@@ -44,8 +44,8 @@ export class UserEditComponent implements OnInit {
     //console.log(this.user);
     this._userService.update(this.token, this.user).subscribe(
       response => {
-        console.log(response);
-        if(response){
+        //console.log(response);
+        if(response && response.status){
           this.status = "success";
 
           // Actualizar usuario en sesión
