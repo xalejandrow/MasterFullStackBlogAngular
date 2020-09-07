@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './app.routing';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -20,13 +20,15 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     RegisterComponent,
     HomeComponent,
     ErrorComponent,
-    UserEditComponent
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [
     appRoutingProviders

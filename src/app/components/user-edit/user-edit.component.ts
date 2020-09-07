@@ -16,6 +16,13 @@ export class UserEditComponent implements OnInit {
   public status: string;
   public identity;
   public token;
+  public froala_options: Object = {
+    charCounterCount: true,
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+  };
 
 
   constructor(

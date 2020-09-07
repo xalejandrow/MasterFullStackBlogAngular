@@ -7,12 +7,12 @@
 
   <hr/>
 
-<!--   <div class="alert alert-success col-md-5 mt-3" *ngIf="status == 'success'">
-    El regitro se ha completado correctamente, <a [routerLink]="['/login']">logueate aquí</a>
+  <div class="alert alert-success col-md-5 mt-3" *ngIf="status == 'success'">
+    Los datos se han guardado correctamente.
   </div>
   <div class="alert alert-danger col-md-5 mt-3" *ngIf="status == 'error'">
-    El regitro no se ha completado correctamente, vuelve a intentarlo más tarde.
-  </div> -->
+    Los datos no se han guardado.
+  </div>
 
   <!-- Formulario de Ajustes -->
   <form class="col-md-5 ml-0 pl-0" #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm)">
@@ -46,10 +46,15 @@
       </small>
     </div>
 
-    <div class="form-group">
+   <!--  <div class="form-group">
       <label for="description">Biografía</label>
       <input type="text" name="description" class="form-control" #description="ngModel"
       [(ngModel)]="user.description">
+    </div> -->
+    <div class="form-group">
+      <label for="description">Biografía</label>
+      <textarea [froalaEditor]="froala_options" name="description" class="form-control" #description="ngModel"
+      [(ngModel)]="user.description"></textarea>
     </div>
 
     <div class="form-group">
