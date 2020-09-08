@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { global } from "../../services/global";
 import { Observable } from 'rxjs';
 
 @Component({
@@ -16,6 +17,9 @@ export class UserEditComponent implements OnInit {
   public status: string;
   public identity;
   public token;
+  public url;
+  public resetVar: boolean;
+
   public froala_options: Object = {
     charCounterCount: true,
     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
@@ -25,6 +29,40 @@ export class UserEditComponent implements OnInit {
   };
 
 
+  public afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png, .gif, .jpeg",
+    maxSize: "1",
+    uploadAPI:  {
+      url:global.url+'user/upload',
+      method:"POST",
+      headers: {
+     "Authorization" : this._userService.getToken()
+      },
+      params: {
+        'page': '1'
+      },
+      responseType: 'blob',
+    },
+    theme: "attachPin",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    fileNameIndex: true,
+    replaceTexts: {
+      selectFileBtn: 'Select Files',
+      resetBtn: 'Reset',
+      uploadBtn: 'Upload',
+      dragNDropBox: 'Drag N Drop',
+      attachPinBtn: 'Sube tu avatar de usuario',
+      attachPinText: 'Sube tu avatar de usuario',
+      afterUploadMsg_success: 'Successfully Uploaded !',
+      afterUploadMsg_error: 'Upload Failed !',
+      sizeLimit: 'Size Limit'
+    }
+};
+
+
   constructor(
     private _userService: UserService
   ) {
@@ -32,6 +70,7 @@ export class UserEditComponent implements OnInit {
     //this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.url = global.url;
     // Rellenar objeto Usuario
     this.user = new User(this.identity.sub,
       this.identity.name,
@@ -85,6 +124,13 @@ export class UserEditComponent implements OnInit {
 
       }
     );
+  }
+
+
+  avatarUpload(datos){
+    let data = JSON.parse(datos.response);
+    this.user.image = data.image;
+
   }
 
 }

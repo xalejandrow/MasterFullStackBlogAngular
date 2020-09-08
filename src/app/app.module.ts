@@ -4,6 +4,7 @@ import { routing, appRoutingProviders } from './app.routing';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -28,7 +29,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     FormsModule,
     HttpClientModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    AngularFileUploaderModule
   ],
   providers: [
     appRoutingProviders
